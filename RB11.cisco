@@ -1,0 +1,45 @@
+!Router RB11
+hostname RB11
+!
+interface FastEthernet0/0
+ description lien vers SWB31
+ ip address 172.16.0.1 255.255.255.240
+ no shutdown
+ standby 1 ip 172.16.0.14
+ standby 1 preempt
+!
+interface FastEthernet0/1
+ description lien vers SWB32
+ ip address 172.16.0.17 255.255.255.240
+ no shutdown
+ standby 2 ip 172.16.0.30
+ standby 2 preempt
+!
+interface FastEthernet1/0
+ description lien vers ASA
+ ip address 10.10.10.2 255.255.255.252
+ no shutdown
+
+ip route 0.0.0.0 0.0.0.0 10.10.10.1
+ip route 0.0.0.0 0.0.0.0 10.10.10.9
+
+!security
+service password-encryption
+!
+line vty 0 4
+ transport input ssh
+ login local
+
+enable secret privilege
+
+line console 0
+ password console
+ login
+
+username admin secret admin
+
+no ip domain-lookup
+ip domain-name gtr.tp
+
+crypto key generate rsa general-keys modulus 1024
+ip ssh version 2
