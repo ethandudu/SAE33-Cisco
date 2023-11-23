@@ -43,3 +43,7 @@ ip domain-name gtr.tp
 
 crypto key generate rsa general-keys modulus 1024
 ip ssh version 2
+
+banner motd #Acces reserve au personnel autorise#
+
+end
