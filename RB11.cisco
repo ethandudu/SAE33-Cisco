@@ -20,6 +20,7 @@ interface FastEthernet0/1
 interface FastEthernet1/0
  description lien vers ASA
  ip address 10.10.10.2 255.255.255.252
+ ip access-group 101 out
  no shutdown
 
 ip route 0.0.0.0 0.0.0.0 10.10.10.1
@@ -47,5 +48,10 @@ crypto key generate rsa general-keys modulus 1024
 ip ssh version 2
 
 banner motd #Acces reserve au personnel autorise#
+
+!access-list
+access-list 101 deny ip any 172.16.0.0 0.15.255.255
+access-list 101 deny ip any 192.168.0.0 0.0.255.255
+access-list 101 permit ip any any
 
 end
