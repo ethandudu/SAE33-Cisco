@@ -6,6 +6,7 @@ interface FastEthernet0/0
  ip address 172.16.0.1 255.255.255.240
  no shutdown
  standby 1 ip 172.16.0.14
+ standby 1 priority 110
  standby 1 preempt
 !
 interface FastEthernet0/1
@@ -13,6 +14,7 @@ interface FastEthernet0/1
  ip address 172.16.0.17 255.255.255.240
  no shutdown
  standby 2 ip 172.16.0.30
+ standby 2 priority 100
  standby 2 preempt
 !
 interface FastEthernet1/0
