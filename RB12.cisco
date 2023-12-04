@@ -1,7 +1,7 @@
 !Router RB12
 hostname RB12
 !
-interface FastEthernet0/0/0
+interface FastEthernet0/0
  description lien vers SWB32
  ip address 172.16.0.18 255.255.255.240
  no shutdown
