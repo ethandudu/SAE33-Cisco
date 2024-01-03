@@ -20,3 +20,9 @@ line console 0
  login
 
 banner motd #Acces reserve au personnel autorise de la SAE33 uniquement#
+
+!interface ASA
+interface FastEthernet1/1
+ description RB12->ASA
+ ip address 10.10.10.3 255.255.255.240
+ no shutdown
