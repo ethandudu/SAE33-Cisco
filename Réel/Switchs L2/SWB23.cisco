@@ -1,0 +1,24 @@
+hostname SWB23
+
+!security
+service password-encryption
+username admin secret admin
+enable secret privilege
+
+no ip domain-lookup
+ip domain-name gtr.tp
+
+crypto key generate rsa general-keys modulus 1024
+ip ssh version 2
+
+
+line vty 0 4
+ transport input ssh
+ login local
+
+
+line console 0
+ password console
+ login
+
+banner motd #Acces reserve au personnel autorise de la SAE33 uniquement#
