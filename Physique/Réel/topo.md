@@ -80,6 +80,7 @@
 ### SWB31
 
 **🔌Port USB** : `ttyUSB20`
+**IP Gestion** : `192.168.174.3`
 
 ### SWB32
 
