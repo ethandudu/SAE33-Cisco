@@ -26,47 +26,59 @@ line console 0
 banner motd #Acces reserve au personnel autorise de la SAE33 uniquement#
 
 !vlan
-int vlan 2
+interface vlan 2
  name 2-Collab
 
-int vlan 3
+interface vlan 3
  name 3-Admins
 
-int vlan 4
+interface vlan 4
  name 4-VoIP
 
-int vlan 6
+interface vlan 6
  name 6-WiFi
 
-int vlan 7
+interface vlan 7
  name 7-Gestion
  ip address 192.168.174.31 255.255.255.224
 
 
 ! interface
-interface range fa0/1-10
+interface range FastEthernet0/1-10
  switchport mode access
  switchport access vlan 2
  no shutdown
 
-interface range fa0/11-20
+interface range FastEthernet0/11-20
  switchport mode access
  switchport access vlan 3
  no shutdown
 
-interface fa0/21
+interface FastEthernet0/21
  switchport mode access
  switchport voice vlan 4
  mls qos trust cos
  no shutdown
 
-interface fa0/22
+interface FastEthernet0/22
  switchport mode access
  switchport access vlan 6
  no shutdown
 
-interface range fa0/23-24
+interface range FastEthernet0/23-24
  shutdown
 
 interface range gi0/1-2
  shutdown
+
+interface FastEthernet0/9
+ switchport mode trunk
+ switchport trunk native vlan 7
+ switchport trunk allowed vlan 3,4,7
+ no shutdown
+
+interface FastEthernet0/10
+ switchport mode trunk
+ switchport trunk native vlan 2
+ switchport trunk allowed vlan 2,6
+ no shutdown
