@@ -14,6 +14,8 @@
 - [Switchs L2](#switchs-l2)
   - [SWB21](#swb21)
   - [SWB22](#swb22)
+  - [SWB23](#swb23)
+  - [SWB24](#swb24)
 - [ASA](#asa)
 - [WLC](#wlc)
 
@@ -77,29 +79,37 @@
 
 ### SWB31
 
-**🔌Port USB** : `ttyUSB19`
+**🔌Port USB** : `ttyUSB20`
 
 ### SWB32
 
-**🔌Port USB** : `ttyUSB18`
+**🔌Port USB** : `ttyUSB21`
 
 ### SWB33
 
-**🔌Port USB** : `ttyUSB17`
+**🔌Port USB** : `ttyUSB22`
 
 ### SWB34
 
-**🔌Port USB** : `ttyUSB16`
+**🔌Port USB** : `ttyUSB23`
 
 ## Switchs L2
 
 ### SWB21
 
-**🔌Port USB** : `ttyUSB23`
+**🔌Port USB** : `ttyUSB16`
 
 ### SWB22
 
-**🔌Port USB** : `ttyUSB22`
+**🔌Port USB** : `ttyUSB17`
+
+### SWB23
+
+**🔌Port USB** : `ttyUSB18`
+
+### SWB24
+
+**🔌Port USB** : `ttyUSB19`
 
 ## ASA
 
