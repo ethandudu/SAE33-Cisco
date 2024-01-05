@@ -1,0 +1,66 @@
+hostname RB12
+
+!security
+service password-encryption
+username admin secret admin
+enable secret privilege
+
+no ip domain-lookup
+ip domain-name gtr.tp
+
+crypto key generate rsa general-keys modulus 1024
+ip ssh version 2
+
+line vty 0 4
+ transport input ssh
+ login local
+
+line console 0
+ password console
+ login
+
+banner motd #Acces reserve au personnel autorise de la SAE33 uniquement#
+
+!interface
+interface FastEthernet0/0
+ description RB12->SWB32 VLAN 2-6
+ no shutdown
+
+interface FastEthernet1/0
+ description RB12->SWB31 VLAN 3-4-7
+ no shutdown
+
+inteface FastEthernet1/1
+ description RB12->ASA
+ ip address 10.10.10.12 255.255.255.240
+ no shutdown
+
+!SVI
+interface Ethernet1/0.3
+ description VLAN 3
+ encapsulation dot1Q 3
+ ip address 192.168.168.2 255.255.255.0
+ no shutdown
+
+interface Ethernet1/0.4
+ description VLAN 4
+ encapsulation dot1Q 4
+ ip address 192.168.169.2 255.255.255.0
+ no shutdown
+
+interface Ethernet1/0.7
+ description VLAN 7
+ encapsulation dot1Q 7
+ ip address 192.168.174.2 255.255.255.224
+ no shutdown
+
+interface FastEthernet0/0.2
+ description VLAN 2
+ encapsulation dot1Q 2
+ ip address 192.168.172.2 255.255.254.0
+ no shutdown
+
+interface FastEthernet0/0.6
+ description VLAN 6
+ encapsulation dot1Q 6
+ ip address 192.168.170.2 255.255.254.0
