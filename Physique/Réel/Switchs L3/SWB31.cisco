@@ -1,0 +1,69 @@
+hostname SWB31
+
+ip classless
+
+!security
+service password-encryption
+username admin secret admin
+enable secret privilege
+
+no ip domain-lookup
+ip domain-name gtr.tp
+
+crypto key generate rsa general-keys modulus 1024
+ip ssh version 2
+
+
+line vty 0 4
+ transport input ssh
+ login local
+
+
+line console 0
+ password console
+ login
+
+banner motd #Acces reserve au personnel autorise de la SAE33 uniquement#
+
+!vlan
+int vlan 2
+ name 2-Collab
+
+int vlan 3
+ name 3-Admins
+
+int vlan 4
+ name 4-VoIP
+
+int vlan 6
+ name 6-WiFi
+
+int vlan 7
+ name 7-Gestion
+ ip address 192.168.174.31 255.255.255.224
+
+
+! interface
+interface range fa0/1-10
+ switchport mode access
+ switchport access vlan 2
+ no shutdown
+
+interface range fa0/11-20
+ switchport mode access
+ switchport access vlan 3
+ no shutdown
+
+interface fa0/21
+ switchport mode access
+ switchport voice vlan 4
+ mls qos trust cos
+ no shutdown
+
+interface fa0/22
+ switchport mode access
+ switchport access vlan 6
+ no shutdown
+
+interface range fa0/23-24
+ shutdown
