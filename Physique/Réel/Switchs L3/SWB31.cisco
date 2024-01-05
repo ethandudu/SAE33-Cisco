@@ -67,3 +67,6 @@ interface fa0/22
 
 interface range fa0/23-24
  shutdown
+
+interface range gi0/1-2
+ shutdown
