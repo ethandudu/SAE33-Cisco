@@ -22,3 +22,41 @@ line console 0
  login
 
 banner motd #Acces reserve au personnel autorise de la SAE33 uniquement#
+
+vlan 2
+ name 2-Collab
+
+vlan 3
+ name 3-Admins
+
+vlan 4
+ name 4-VoIP
+
+vlan 6
+ name 6-WiFi
+
+vlan 7
+ name 7-AdminEquip
+
+int range gi1/0/1-10
+ switchport mode access
+ switchport access vlan 2
+ no shutdown
+
+int range gi1/0/11-20
+ switchport mode access
+ switchport access vlan 3
+ no shutdown
+
+int gi1/0/21
+ switchport mode access
+ switchport voice vlan 4
+ mls qos trust cos
+ no shutdown
+
+int gi1/0/22
+ switchport mode access
+ switchport access vlan 6
+ no shutdown
+
+end
