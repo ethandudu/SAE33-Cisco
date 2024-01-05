@@ -61,8 +61,8 @@
 
 | Interface | IP | Destination | Description |
 | --------- | -- | ----------- | ----------- |
-| Fa0/0 |  | SWB32 |  |
-| Eth1/0 |  | SWB31 |  |
+| Fa0/0 |  | SWB32 | Trunk VLAN 2-6 |
+| Eth1/0 |  | SWB31 | Trunk VLAN 3-4-7 |
 | Eth1/1 | 10.10.10.12/28 | ASA | ASA-RB12 |
 
 #### SVI
