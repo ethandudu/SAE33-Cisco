@@ -16,8 +16,8 @@
   - [SWB22](#swb22)
   - [SWB23](#swb23)
   - [SWB24](#swb24)
-- [ASA](#asa)
-- [WLC](#wlc)
+- [ASAB](#asab)
+- [WLCB](#wlcb)
 
 ## VLANs
 
@@ -111,6 +111,10 @@
 
 **🔌Port USB** : `ttyUSB19`
 
-## ASA
+## ASAB
 
-## WLC
+**🔌Port USB** : `ttyUSB13`
+
+## WLCB
+
+**🔌Port USB** : `ttyUSB12`
