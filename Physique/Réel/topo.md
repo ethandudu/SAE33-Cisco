@@ -115,6 +115,8 @@
 
 **🔌Port USB** : `ttyUSB22`
 
+**🌐IP Gestion** : `192.168.174.5`
+
 #### Interfaces
 
 | Interface | IP | Destination | Description |
@@ -127,6 +129,8 @@
 ### SWB34
 
 **🔌Port USB** : `ttyUSB23`
+
+**🌐IP Gestion** : `192.168.174.6`
 
 #### Interfaces
 

@@ -102,6 +102,6 @@ interface FastEthernet0/12
  no shutdown
 
 interface vlan 7
-  ip address 192.168.174.4 255.255.255.0
+  ip address 192.168.174.5 255.255.255.0
 
 end
