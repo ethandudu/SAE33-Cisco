@@ -82,17 +82,57 @@
 **🔌Port USB** : `ttyUSB20`
 **IP Gestion** : `192.168.174.3`
 
+#### Interfaces
+
+| Interface | IP | Destination | Description |
+| --------- | -- | ----------- | ----------- |
+| Fa0/2 |  | SWB32 |  |
+| Fa0/3 |  | SWB33 |  |
+| Fa0/4 |  | SWB34 |  |
+| Fa0/9 |  | RB11 |  |
+| Fa0/10 |  | RB12 |  |
+| Fa0/12 |  | SWB21 |  |
+
 ### SWB32
 
 **🔌Port USB** : `ttyUSB21`
+
+#### Interfaces
+
+| Interface | IP | Destination | Description |
+| --------- | -- | ----------- | ----------- |
+| Fa0/1 |  | SWB31 |  |
+| Fa0/3 |  | SWB33 |  |
+| Fa0/4 |  | SWB34 |  |
+| Fa0/9 |  | RB11 |  |
+| Fa0/10 |  | RB12 |  |
+| Fa0/12 |  | SWB22 | ?? 24 |
 
 ### SWB33
 
 **🔌Port USB** : `ttyUSB22`
 
+#### Interfaces
+
+| Interface | IP | Destination | Description |
+| --------- | -- | ----------- | ----------- |
+| Fa0/1 |  | SWB31 |  |
+| Fa0/2 |  | SWB32 |  |
+| Fa0/3 |  | SWB34 |  |
+| Fa0/12 |  | SWB23 |  |
+
 ### SWB34
 
 **🔌Port USB** : `ttyUSB23`
+
+#### Interfaces
+
+| Interface | IP | Destination | Description |
+| --------- | -- | ----------- | ----------- |
+| Fa0/1 |  | SWB31 |  |
+| Fa0/2 |  | SWB32 |  |
+| Fa0/3 |  | SWB33 |  |
+| Fa0/12 |  | SWB24 | ?? 22 |
 
 ## Switchs L2
 
