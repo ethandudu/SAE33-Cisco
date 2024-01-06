@@ -26,7 +26,7 @@ interface FastEthernet0/0
  description RB12->SWB32 VLAN 2-6
  no shutdown
 
-interface FastEthernet1/0
+interface Ethernet1/0
  description RB12->SWB31 VLAN 3-4-7
  no shutdown
 
