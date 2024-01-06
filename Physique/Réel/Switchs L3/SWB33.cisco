@@ -63,7 +63,7 @@ interface FastEthernet0/22
  switchport access vlan 6
  no shutdown
 
-interface range FastEthernet0/23-24
+interface range FastEthernet0/23-48
  shutdown
 
 interface range gi0/1-2
