@@ -23,6 +23,9 @@ banner motd #Acces reserve au personnel autorise de la SAE33 uniquement#
 
 ip route 0.0.0.0 0.0.0.0 10.10.10.1
 
+clock timezone WET 1
+ntp master
+
 !nat
 access-list 1 permit 192.168.16.0 0.0.7.255
 ip nat inside source list 1 interface FastEthernet1/0 overload
