@@ -63,51 +63,47 @@ interface GigabitEthernet1/0/22
 
 interface GigabitEthernet1/0/2
  description SWB32
- switchport trunk encapsulation dot1q
  switchport mode trunk
- switchport trunk native vlan 7
  switchport trunk allowed vlan 2,3,4,6,7
  no shutdown
 
 interface GigabitEthernet1/0/3
  description SWB33
- switchport trunk encapsulation dot1q
  switchport mode trunk
- switchport trunk native vlan 7
  switchport trunk allowed vlan 2,3,4,6,7
  no shutdown
 
 interface GigabitEthernet1/0/4
  description SWB34
- switchport trunk encapsulation dot1q
  switchport mode trunk
- switchport trunk native vlan 7
  switchport trunk allowed vlan 2,3,4,6,7
  no shutdown
 
 interface GigabitEthernet1/0/9
  description RB11
- switchport trunk encapsulation dot1q
  switchport mode trunk
- switchport trunk native vlan 7
  switchport trunk allowed vlan 3,4,7
  no shutdown
 
 interface GigabitEthernet1/0/10
  description RB12
- switchport trunk encapsulation dot1q
  switchport mode trunk
- switchport trunk native vlan 2
  switchport trunk allowed vlan 2,6
  no shutdown
 
 interface GigabitEthernet1/0/12
  description SWB21
- switchport trunk encapsulation dot1q
  switchport mode trunk
- switchport trunk native vlan 7
  switchport trunk allowed vlan 2,3,4,6,7
  no shutdown
+
+interface vlan 2
+
+interface vlan 3
+
+interface vlan 4
+
+interface vlan 6
 
 interface vlan 7
   ip address 192.168.174.3 255.255.255.224
