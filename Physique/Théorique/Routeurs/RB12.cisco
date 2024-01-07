@@ -7,6 +7,7 @@ enable secret privilege
 
 no ip domain-lookup
 ip domain-name neticien.fr
+ip name-server 10.4.108.251
 
 crypto key generate rsa general-keys modulus 1024
 ip ssh version 2
@@ -21,10 +22,54 @@ line console 0
 
 banner motd #Acces reserve au personnel autorise de la SAE33 uniquement#
 
+ip route 0.0.0.0 0.0.0.0 10.10.10.9
+
+!nat
+access-list 1 permit 192.168.16.0 0.0.7.255
+ip nat inside source list 1 interface FastEthernet1/0 overload
+
+!dhcp
+ip dhcp pool VLAN2
+ network 192.168.16.0 255.255.254.0
+ default-router 192.168.17.254
+ domain neticien.fr
+ dns-server 10.4.108.251
+
+ip dhcp pool VLAN3
+ network 192.168.18.0 255.255.255.0
+ default-router 192.168.18.254
+ domain neticien.fr
+ dns-server 10.4.108.251
+
+ip dhcp pool VLAN4
+ network 192.168.19.0 255.255.255.0
+ default-router 192.168.19.254
+ domain neticien.fr
+ dns-server 10.4.108.251
+
+ip dhcp pool VLAN6
+ network 192.168.20.0 255.255.254.0
+ default-router 192.168.21.254
+ domain neticien.fr
+ dns-server 10.4.108.251
+
+ip dhcp excluded-address 192.168.16.1
+ip dhcp excluded-address 192.168.16.2
+ip dhcp excluded-address 192.168.17.254
+ip dhcp excluded-address 192.168.18.1
+ip dhcp excluded-address 192.168.18.2
+ip dhcp excluded-address 192.168.18.254
+ip dhcp excluded-address 192.168.19.1
+ip dhcp excluded-address 192.168.19.2
+ip dhcp excluded-address 192.168.19.254
+ip dhcp excluded-address 192.168.20.1
+ip dhcp excluded-address 192.168.20.2
+ip dhcp excluded-address 192.168.21.254
+
 !interface ASA
 interface FastEthernet1/1
- description RB11->ASA
- ip address 10.10.10.4 255.255.255.240
+ description ASA
+ ip address 10.10.16.10 255.255.255.240
  no shutdown
 
 interface FastEthernet0/1
