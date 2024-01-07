@@ -42,34 +42,34 @@ vlan 7
  name 7-Gestion
 
 ! interface
-interface range FastEthernet0/1-10
+interface range GigabitEthernet1/0/1-10
  switchport mode access
  switchport access vlan 2
  no shutdown
 
-interface range FastEthernet0/11-20
+interface range GigabitEthernet1/0/11-20
  switchport mode access
  switchport access vlan 3
  no shutdown
 
-interface FastEthernet0/21
+interface GigabitEthernet1/0/21
  switchport mode access
  switchport voice vlan 4
  mls qos trust cos
  no shutdown
 
-interface FastEthernet0/22
+interface GigabitEthernet1/0/22
  switchport mode access
  switchport access vlan 6
  no shutdown
 
-interface range FastEthernet0/23-24
+interface range GigabitEthernet1/0/23-24
  shutdown
 
-interface range gi0/1-2
+interface range GigabitEthernet1/1/1-4
  shutdown
 
-interface FastEthernet0/1
+interface GigabitEthernet1/0/1
  description SWB31
  switchport trunk encapsulation dot1q
  switchport mode trunk
@@ -77,7 +77,7 @@ interface FastEthernet0/1
  switchport trunk allowed vlan 2,3,4,6,7
  no shutdown
 
-interface FastEthernet0/2
+interface GigabitEthernet1/0/2
  description SWB32
  switchport trunk encapsulation dot1q
  switchport mode trunk
@@ -85,7 +85,7 @@ interface FastEthernet0/2
  switchport trunk allowed vlan 2,3,4,6,7
  no shutdown
 
-interface FastEthernet0/3
+interface GigabitEthernet1/0/3
  description SWB33
  switchport trunk encapsulation dot1q
  switchport mode trunk
@@ -93,7 +93,7 @@ interface FastEthernet0/3
  switchport trunk allowed vlan 2,3,4,6,7
  no shutdown
 
-interface FastEthernet0/12
+interface GigabitEthernet1/0/12
  description SWB24
  switchport trunk encapsulation dot1q
  switchport mode trunk

@@ -6,7 +6,7 @@ username admin secret admin
 enable secret privilege
 
 no ip domain-lookup
-ip domain-name gtr.tp
+ip domain-name neticien.fr
 
 crypto key generate rsa general-keys modulus 1024
 ip ssh version 2
@@ -23,6 +23,82 @@ banner motd #Acces reserve au personnel autorise de la SAE33 uniquement#
 
 !interface ASA
 interface FastEthernet1/1
- description RB12->ASA
- ip address 10.10.10.3 255.255.255.240
+ description RB11->ASA
+ ip address 10.10.10.4 255.255.255.240
  no shutdown
+
+interface FastEthernet0/1
+ description RB12->SWB32 VLAN 3-4-7
+ ip address 172.16.16.2 255.255.255.240
+ standby version 2
+ standby 10 ip 172.16.16.14
+ standby 10 priority 100
+ standby 10 preempt
+ standby 10 track FastEthernet1/1
+ no shutdown
+
+interface FastEthernet0/0
+ description RB12->SWB31 VLAN 2-6
+ ip address 172.16.16.18 255.255.255.240
+ standby version 2
+ standby 11 ip 172.16.16.30
+ standby 11 priority 109
+ standby 11 preempt
+ standby 11 track FastEthernet1/1
+ no shutdown
+
+interface FastEthernet0/1.3
+ description VLAN 3
+ encapsulation dot1Q 3 
+ ip address 192.168.18.2 255.255.255.0
+ standby version 2
+ standby 3 ip 192.168.18.254
+ standby 3 priority 100
+ standby 3 preempt
+ standby 3 track FastEthernet1/1
+ no shutdown
+
+interface FastEthernet0/1.4
+ description VLAN 4
+ encapsulation dot1Q 4 
+ ip address 192.168.19.2 255.255.255.0
+ standby version 2
+ standby 4 ip 192.168.19.254
+ standby 4 priority 100
+ standby 4 preempt
+ standby 4 track FastEthernet1/1
+ no shutdown
+
+interface FastEthernet0/1.7
+ description VLAN 7
+ encapsulation dot1Q 7 
+ ip address 192.168.22.2 255.255.255.224
+ standby version 2
+ standby 7 ip 192.168.22.30
+ standby 7 priority 100
+ standby 7 preempt
+ standby 7 track FastEthernet1/1
+ no shutdown
+
+interface FastEthernet0/0.2
+ description VLAN 2
+ encapsulation dot1Q 2 
+ ip address 192.168.16.2 255.255.254.0
+ standby version 2
+ standby 2 ip 192.168.17.254
+ standby 2 priority 109
+ standby 2 preempt
+ standby 2 track FastEthernet1/1
+ no shutdown
+
+interface FastEthernet0/0.6
+ description VLAN 6
+ encapsulation dot1Q 6 
+ ip address 192.168.20.2 255.255.254.0
+ standby version 2
+ standby 6 ip 192.168.21.254
+ standby 6 priority 109
+ standby 6 preempt
+ standby 6 track FastEthernet1/1
+
+end

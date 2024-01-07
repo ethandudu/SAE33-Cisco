@@ -30,7 +30,7 @@ interface Ethernet1/0
  description RB12->SWB31 VLAN 3-4-7
  no shutdown
 
-inteface FastEthernet1/1
+interface Ethernet1/1
  description RB12->ASA
  ip address 10.10.10.12 255.255.255.240
  no shutdown
@@ -40,29 +40,50 @@ interface Ethernet1/0.3
  description VLAN 3
  encapsulation dot1Q 3
  ip address 192.168.168.2 255.255.255.0
+ standby 3 ip 192.168.168.254
+ standby 3 priority 100
+ standby 3 preempt
+ standby 3 track Ethernet1/1 20
  no shutdown
 
 interface Ethernet1/0.4
  description VLAN 4
  encapsulation dot1Q 4
  ip address 192.168.169.2 255.255.255.0
+ standby 4 ip 192.168.169.254
+ standby 4 priority 100
+ standby 4 preempt
+ standby 4 track Ethernet1/1 20
  no shutdown
 
 interface Ethernet1/0.7
  description VLAN 7
  encapsulation dot1Q 7
  ip address 192.168.174.2 255.255.255.224
+ standby 7 ip 192.168.174.30
+ standby 7 priority 100
+ standby 7 preempt
+ standby 7 track Ethernet1/1 20
  no shutdown
 
 interface FastEthernet0/0.2
  description VLAN 2
  encapsulation dot1Q 2
  ip address 192.168.172.2 255.255.254.0
+ standby 2 ip 192.168.173.254
+ standby 2 priority 110
+ standby 2 preempt
+ standby 2 track Ethernet1/1 20
  no shutdown
 
 interface FastEthernet0/0.6
  description VLAN 6
  encapsulation dot1Q 6
  ip address 192.168.170.2 255.255.254.0
+ standby 6 ip 192.168.171.254
+ standby 6 priority 110
+ standby 6 preempt
+ standby 6 track Ethernet1/1 20
+ no shutdown
 
 end
