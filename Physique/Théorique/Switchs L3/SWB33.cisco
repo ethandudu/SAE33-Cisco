@@ -46,18 +46,28 @@ vlan 7
 interface GigabitEthernet1/0/1
  description SWB31
  switchport mode trunk
+ switchport voice vlan 4
  spanning-tree link-type point-to-point
 
 interface GigabitEthernet1/0/2
  description SWB32
  switchport mode trunk
+ switchport voice vlan 4
  spanning-tree link-type point-to-point
 
 interface GigabitEthernet1/0/4
  description SWB34
  switchport mode trunk
+ switchport voice vlan 4
  spanning-tree link-type point-to-point
 
+interface GigabitEthernet1/0/11
+ description SWB23
+ switchport mode trunk
+ switchport voice vlan 4
+
+interface range GigabitEthernet1/0/3,GigabitEthernet1/0/12-24
+ shutdown
 
 interface vlan 2
 
