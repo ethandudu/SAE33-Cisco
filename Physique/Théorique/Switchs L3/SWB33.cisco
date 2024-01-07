@@ -6,11 +6,16 @@ username admin secret admin
 enable secret privilege
 
 no ip domain-lookup
-ip domain-name gtr.tp
+ip classless
+ip domain-name neticien.fr
+ip default-gateway 172.16.16.30
 
 crypto key generate rsa general-keys modulus 1024
 ip ssh version 2
 
+cdp run
+
+spanning-tree mode rapid-pvst
 
 line vty 0 4
  transport input ssh
@@ -38,25 +43,31 @@ vlan 6
 vlan 7
  name 7-AdminEquip
 
-int range gi1/0/1-10
- switchport mode access
- switchport access vlan 2
- no shutdown
+interface GigabitEthernet1/0/1
+ description SWB31
+ switchport mode trunk
+ spanning-tree link-type point-to-point
 
-int range gi1/0/11-20
- switchport mode access
- switchport access vlan 3
- no shutdown
+interface GigabitEthernet1/0/2
+ description SWB32
+ switchport mode trunk
+ spanning-tree link-type point-to-point
 
-int gi1/0/21
- switchport mode access
- switchport voice vlan 4
- mls qos trust cos
- no shutdown
+interface GigabitEthernet1/0/4
+ description SWB34
+ switchport mode trunk
+ spanning-tree link-type point-to-point
 
-int gi1/0/22
- switchport mode access
- switchport access vlan 6
- no shutdown
+
+interface vlan 2
+
+interface vlan 3
+
+interface vlan 4
+
+interface vlan 6
+
+interface vlan 7
+  ip address 192.168.22.5 255.255.255.224
 
 end
