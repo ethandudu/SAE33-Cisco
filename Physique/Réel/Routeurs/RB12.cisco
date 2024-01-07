@@ -7,6 +7,7 @@ enable secret privilege
 
 no ip domain-lookup
 ip domain-name neticien.fr
+ip name-server 10.4.108.251
 
 crypto key generate rsa general-keys modulus 1024
 ip ssh version 2
@@ -21,69 +22,132 @@ line console 0
 
 banner motd #Acces reserve au personnel autorise de la SAE33 uniquement#
 
+ip route 0.0.0.0 0.0.0.0 10.10.10.9
+
+clock timezone WET 1
+ntp master
+
+!nat
+access-list 1 permit 192.168.16.0 0.0.7.255
+ip nat inside source list 1 interface FastEthernet1/0 overload
+
+!dhcp
+ip dhcp pool VLAN2
+ network 192.168.16.0 255.255.254.0
+ default-router 192.168.17.254
+ domain neticien.fr
+ dns-server 10.4.108.251
+
+ip dhcp pool VLAN3
+ network 192.168.18.0 255.255.255.0
+ default-router 192.168.18.254
+ domain neticien.fr
+ dns-server 10.4.108.251
+
+ip dhcp pool VLAN4
+ network 192.168.19.0 255.255.255.0
+ default-router 192.168.19.254
+ domain neticien.fr
+ dns-server 10.4.108.251
+
+ip dhcp pool VLAN6
+ network 192.168.20.0 255.255.254.0
+ default-router 192.168.21.254
+ domain neticien.fr
+ dns-server 10.4.108.251
+
+ip dhcp excluded-address 192.168.16.1
+ip dhcp excluded-address 192.168.16.2
+ip dhcp excluded-address 192.168.17.254
+ip dhcp excluded-address 192.168.18.1
+ip dhcp excluded-address 192.168.18.2
+ip dhcp excluded-address 192.168.18.254
+ip dhcp excluded-address 192.168.19.1
+ip dhcp excluded-address 192.168.19.2
+ip dhcp excluded-address 192.168.19.254
+ip dhcp excluded-address 192.168.20.1
+ip dhcp excluded-address 192.168.20.2
+ip dhcp excluded-address 192.168.21.254
+
 !interface
 interface FastEthernet0/0
- description RB12->SWB32 VLAN 2-6
+ description RB12->SWB31 VLAN 2-6
+ ip address 172.16.16.18 255.255.255.240
+ standby version 2
+ standby 11 ip 172.16.16.30
+ standby 11 priority 109
+ standby 11 preempt
+ standby 11 track Ethernet1/1
  no shutdown
 
 interface Ethernet1/0
- description RB12->SWB31 VLAN 3-4-7
+ description RB12->SWB32 VLAN 3-4-7
+ ip address 172.16.16.2 255.255.255.240
+ standby version 2
+ standby 10 ip 172.16.16.14
+ standby 10 priority 100
+ standby 10 preempt
+ standby 10 track Ethernet1/1
  no shutdown
 
 interface Ethernet1/1
- description RB12->ASA
- ip address 10.10.10.12 255.255.255.240
+ description ASA
+ ip address 10.10.16.10 255.255.255.240
  no shutdown
 
 !SVI
 interface Ethernet1/0.3
  description VLAN 3
- encapsulation dot1Q 3
- ip address 192.168.168.2 255.255.255.0
- standby 3 ip 192.168.168.254
+ encapsulation dot1Q 3 
+ ip address 192.168.18.2 255.255.255.0
+ standby version 2
+ standby 3 ip 192.168.18.254
  standby 3 priority 100
  standby 3 preempt
- standby 3 track Ethernet1/1 20
+ standby 3 track Ethernet1/1
  no shutdown
 
 interface Ethernet1/0.4
  description VLAN 4
- encapsulation dot1Q 4
- ip address 192.168.169.2 255.255.255.0
- standby 4 ip 192.168.169.254
+ encapsulation dot1Q 4 
+ ip address 192.168.19.2 255.255.255.0
+ standby version 2
+ standby 4 ip 192.168.19.254
  standby 4 priority 100
  standby 4 preempt
- standby 4 track Ethernet1/1 20
+ standby 4 track Ethernet1/1
  no shutdown
 
 interface Ethernet1/0.7
  description VLAN 7
- encapsulation dot1Q 7
- ip address 192.168.174.2 255.255.255.224
- standby 7 ip 192.168.174.30
+ encapsulation dot1Q 7 
+ ip address 192.168.22.2 255.255.255.224
+ standby version 2
+ standby 7 ip 192.168.22.30
  standby 7 priority 100
  standby 7 preempt
- standby 7 track Ethernet1/1 20
+ standby 7 track Ethernet1/1
  no shutdown
 
 interface FastEthernet0/0.2
  description VLAN 2
- encapsulation dot1Q 2
- ip address 192.168.172.2 255.255.254.0
- standby 2 ip 192.168.173.254
- standby 2 priority 110
+ encapsulation dot1Q 2 
+ ip address 192.168.16.2 255.255.254.0
+ standby version 2
+ standby 2 ip 192.168.17.254
+ standby 2 priority 109
  standby 2 preempt
- standby 2 track Ethernet1/1 20
+ standby 2 track Ethernet1/1
  no shutdown
 
 interface FastEthernet0/0.6
  description VLAN 6
- encapsulation dot1Q 6
- ip address 192.168.170.2 255.255.254.0
- standby 6 ip 192.168.171.254
- standby 6 priority 110
+ encapsulation dot1Q 6 
+ ip address 192.168.20.2 255.255.254.0
+ standby version 2
+ standby 6 ip 192.168.21.254
+ standby 6 priority 109
  standby 6 preempt
- standby 6 track Ethernet1/1 20
- no shutdown
+ standby 6 track FastEthernet1/1
 
 end

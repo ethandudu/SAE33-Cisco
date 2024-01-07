@@ -1,18 +1,21 @@
 hostname SWB34
 
-ip classless
-
 !security
 service password-encryption
 username admin secret admin
 enable secret privilege
 
 no ip domain-lookup
+ip classless
 ip domain-name neticien.fr
+ip default-gateway 172.16.16.14
 
 crypto key generate rsa general-keys modulus 1024
 ip ssh version 2
 
+cdp run
+
+spanning-tree mode rapid-pvst
 
 line vty 0 4
  transport input ssh
@@ -25,7 +28,6 @@ line console 0
 
 banner motd #Acces reserve au personnel autorise de la SAE33 uniquement#
 
-!vlan
 vlan 2
  name 2-Collab
 
@@ -39,69 +41,43 @@ vlan 6
  name 6-WiFi
 
 vlan 7
- name 7-Gestion
+ name 7-AdminEquip
 
-! interface
-interface range GigabitEthernet1/0/1-10
- switchport mode access
- switchport access vlan 2
- no shutdown
-
-interface range GigabitEthernet1/0/11-20
- switchport mode access
- switchport access vlan 3
- no shutdown
-
-interface GigabitEthernet1/0/21
- switchport mode access
+interface GigabitEthernet1/0/1
+ description SWB31
+ switchport mode trunk
  switchport voice vlan 4
- mls qos trust cos
- no shutdown
 
-interface GigabitEthernet1/0/22
- switchport mode access
- switchport access vlan 6
- no shutdown
+interface GigabitEthernet1/0/2
+ description SWB32
+ switchport mode trunk
+ switchport voice vlan 4
 
-interface range GigabitEthernet1/0/23-24
+interface GigabitEthernet1/0/3
+ description SWB33
+ switchport mode trunk
+ switchport voice vlan 4
+
+interface GigabitEthernet1/0/11
+ description SWB22
+ switchport voice vlan 4
+ switchport mode trunk
+
+interface range GigabitEthernet1/0/4-10,GigabitEthernet1/0/12-24
  shutdown
 
 interface range GigabitEthernet1/1/1-4
  shutdown
 
-interface GigabitEthernet1/0/1
- description SWB31
- switchport trunk encapsulation dot1q
- switchport mode trunk
- switchport trunk native vlan 7
- switchport trunk allowed vlan 2,3,4,6,7
- no shutdown
+interface vlan 2
 
-interface GigabitEthernet1/0/2
- description SWB32
- switchport trunk encapsulation dot1q
- switchport mode trunk
- switchport trunk native vlan 7
- switchport trunk allowed vlan 2,3,4,6,7
- no shutdown
+interface vlan 3
 
-interface GigabitEthernet1/0/3
- description SWB33
- switchport trunk encapsulation dot1q
- switchport mode trunk
- switchport trunk native vlan 7
- switchport trunk allowed vlan 2,3,4,6,7
- no shutdown
+interface vlan 4
 
-interface GigabitEthernet1/0/12
- description SWB24
- switchport trunk encapsulation dot1q
- switchport mode trunk
- switchport trunk native vlan 7
- switchport trunk allowed vlan 2,3,4,6,7
- no shutdown
+interface vlan 6
 
 interface vlan 7
-  ip address 192.168.174.6 255.255.255.0
+  ip address 192.168.22.6 255.255.255.224
 
 end

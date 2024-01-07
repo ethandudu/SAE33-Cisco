@@ -6,19 +6,76 @@ username admin secret admin
 enable secret privilege
 
 no ip domain-lookup
-ip domain-name gtr.tp
+ip domain-name neticien.fr
+ip default-gateway 172.16.16.30
 
 crypto key generate rsa general-keys modulus 1024
 ip ssh version 2
 
+cdp run
+
+spanning-tree mode rapid-pvst
 
 line vty 0 4
  transport input ssh
  login local
-
 
 line console 0
  password console
  login
 
 banner motd #Acces reserve au personnel autorise de la SAE33 uniquement#
+
+vlan 2
+ name 2-Collab
+
+vlan 3
+ name 3-Admins
+
+vlan 4
+ name 4-VoIP
+
+vlan 6
+ name 6-WiFi
+
+vlan 7
+ name 7-AdminEquip
+
+interface Vlan 2
+
+interface Vlan 3
+
+interface Vlan 4
+
+interface Vlan 6
+
+interface Vlan 7
+ ip address 192.168.22.8 255.255.255.224
+
+interface range FastEthernet0/1-10
+ switchport access vlan 2
+ switchport mode access
+
+interface range FastEthernet0/11-20
+ switchport access vlan 3
+ switchport mode access
+
+interface FastEthernet0/21
+ switchport access vlan 4
+ switchport mode access
+ switchport voice vlan 4
+
+interface FastEthernet0/22
+ switchport access vlan 6
+ switchport mode access
+
+interface FastEthernet0/23
+ shutdown
+
+interface FastEthernet0/24
+ description SWB31
+ switchport trunk allowed vlan 2,3,4,6,7
+ switchport mode trunk
+ switchport voice vlan 4
+
+end
