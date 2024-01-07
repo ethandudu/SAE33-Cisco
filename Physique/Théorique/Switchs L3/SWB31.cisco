@@ -47,32 +47,27 @@ interface GigabitEthernet1/0/2
  description SWB32
  switchport mode trunk
  switchport voice vlan 4
- spanning-tree link-type point-to-point
 
 interface GigabitEthernet1/0/3
-  description SWB33
-  switchport mode trunk
-  switchport voice vlan 4
-  spanning-tree link-type point-to-point
+ description SWB33
+ switchport mode trunk
+ switchport voice vlan 4
 
 interface GigabitEthernet1/0/4
  description SWB34
-  switchport mode trunk
-  switchport voice vlan 4
-  spanning-tree link-type point-to-point
+ switchport mode trunk
+ switchport voice vlan 4
 
 interface GigabitEthernet1/0/9
  description RB11
  switchport trunk allowed vlan 1,3,4,7
  switchport mode trunk
  switchport voice vlan 4
- spanning-tree link-type shared
 
 interface GigabitEthernet1/0/10
  description RB12
  switchport trunk allowed vlan 1-2,6
  switchport mode trunk
- spanning-tree link-type shared
 
 interface GigabitEthernet1/0/11
  description SWB21
