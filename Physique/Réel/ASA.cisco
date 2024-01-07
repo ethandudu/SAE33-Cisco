@@ -1,15 +1,14 @@
 hostname ASAb
 
 !security
-service password-encryption
 username admin password admin
 enable password privilege
 
-no ip domain-lookup
-ip domain-name neticien.fr
+domain-name neticien.fr
 
-crypto key generate rsa general-keys modulus 1024
-ip ssh version 2
+ssh version 2
+ssh timeout 30
+crypto key generate rsa general-keys modulus 2048
 
 crypto isakmp policy 1
  encryption 3des
@@ -29,14 +28,6 @@ crypto map MAP 13 ipsec-isakmp
  set peer 192.168.174.254
  set transform-set CIPHER
  match address VPN-TRAFFIC
-
-line vty 0 4
- transport input ssh
- login local
-
-line console 0
- password console
- login
 
 banner motd #Acces reserve au personnel autorise de la SAE33 uniquement#
 
