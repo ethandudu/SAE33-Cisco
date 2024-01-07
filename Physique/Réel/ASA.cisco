@@ -2,8 +2,8 @@ hostname ASAb
 
 !security
 service password-encryption
-username admin secret admin
-enable secret privilege
+username admin password admin
+enable password privilege
 
 no ip domain-lookup
 ip domain-name neticien.fr
