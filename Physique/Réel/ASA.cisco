@@ -1,0 +1,78 @@
+hostname ASAb
+
+!security
+service password-encryption
+username admin secret admin
+enable secret privilege
+
+no ip domain-lookup
+ip domain-name neticien.fr
+
+crypto key generate rsa general-keys modulus 1024
+ip ssh version 2
+
+crypto isakmp policy 1
+ encryption 3des
+ hash sha
+ authentication pre-share
+ group 2
+ lifetime 86400
+
+crypto isakmp key cyberneticien address 192.168.174.254
+
+ip access-list extended VPN-TRAFFIC
+ permit ip any any
+
+crypto ipsec transform-set CIPHER esp-3des esp-sha-hmac
+
+crypto map MAP 13 ipsec-isakmp
+ set peer 192.168.174.254
+ set transform-set CIPHER
+ match address VPN-TRAFFIC
+
+line vty 0 4
+ transport input ssh
+ login local
+
+line console 0
+ password console
+ login
+
+banner motd #Acces reserve au personnel autorise de la SAE33 uniquement#
+
+interface Ethernet0/0
+ switchport access vlan 1
+ no shutdown
+
+interface Ethernet0/1
+ switchport access vlan 2
+ no shutdown
+
+interface Ethernet0/2
+ switchport access vlan 3
+ no shutdown
+
+interface Ethernet0/5
+ switchport access vlan 4
+ no shutdown
+
+int vlan 1
+ nameif outside
+ ip address 10.200.16.2 255.255.255.252
+ security-level 0
+
+int vlan 2
+ nameif inside1
+ security-level 100
+ ip address 10.10.16.1 255.255.255.248
+
+int vlan 3
+ nameif inside2
+ security-level 100
+ ip address 10.10.16.9 255.255.255.248
+
+int vlan 4
+ nameif DMZ
+ security-level 50
+ ip address 192.168.174.1 255.255.255.0
+ crypto map MAP
