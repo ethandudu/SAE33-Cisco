@@ -74,7 +74,7 @@ interface FastEthernet0/10
  switchport mode trunk
  switchport trunk encapsulation dot1q
 
-interface FastEthernet0/11
+interface FastEthernet0/12
  description SWB24
  switchport voice vlan 4
  switchport mode trunk
