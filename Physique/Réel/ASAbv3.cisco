@@ -127,7 +127,8 @@ ntp server 134.59.136.1
 telnet timeout 5
 ssh 10.10.16.0 255.255.255.248 inside-11
 ssh 10.10.16.2 255.255.255.255 inside-11
-ssh 10.10.16.10 255.255.255.255 inside-11
+ssh 10.10.16.10 255.255.255.255 inside-12
+ssh 10.10.16.8 255.255.255.248 inside-12
 ssh timeout 30
 !
 dhcpd auto_config outside
