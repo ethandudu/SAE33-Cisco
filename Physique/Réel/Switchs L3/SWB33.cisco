@@ -61,13 +61,13 @@ interface FastEthernet0/4
  switchport trunk encapsulation dot1q
  switchport voice vlan 4
 
-interface FastEthernet0/11
+interface FastEthernet0/12
  description SWB23
  switchport mode trunk
  switchport trunk encapsulation dot1q
  switchport voice vlan 4
 
-interface range FastEthernet0/3,FastEthernet0/12-48
+interface range FastEthernet0/3,FastEthernet0/11,FastEthernet0/13-48
  shutdown
 
 interface range GigabitEthernet0/1-4
