@@ -1,7 +1,6 @@
 ASA Version 8.4(2)
 !
 hostname ASAb
-domain-name neticien.fr
 enable password KWlxdihDUHraHpxp encrypted
 names
 name 192.168.174.1 dmz-ip
@@ -49,23 +48,25 @@ interface Vlan2
  shutdown
 !
 interface Vlan10
+ description interface OUTSIDE
  nameif outside
  security-level 0
  ip address 10.200.16.2 255.255.255.252
 !
 interface Vlan11
+ description interface INSIDE rb11
  nameif inside-11
  security-level 100
  ip address inside-ip-11 255.255.255.248
 !
 interface Vlan12
- no forward interface Vlan11
- no nameif
+ description interface INSIDE rb12
+ nameif inside-12
  security-level 100
  ip address inside-ip-12 255.255.255.248
 !
 interface Vlan13
- no forward interface Vlan10
+ description interface DMZ
  nameif dmz
  security-level 50
  ip address dmz-ip 255.255.255.0
@@ -81,8 +82,14 @@ aaa authentication ssh console LOCAL
 !
 username admin password pqrZ2iqRGgDD9cbU encrypted
 !
+dns domain-lookup outside
+dns server-group DefaultDNS
+ name-server 10.4.408.251
+ name-server 134.59.136.1
+ domain-name neticien.fr
 !
-!
+ntp server 10.4.408.251
+ntp server 134.59.136.1
 !
 telnet timeout 5
 ssh 10.10.16.0 255.255.255.248 inside-11
