@@ -16,6 +16,16 @@ ip arp inspection vlan 4
 ip arp inspection vlan 6
 ip arp inspection vlan 7
 
+ip dhcp snooping
+ip dhcp snooping vlan 2-4
+no ip dhcp snooping information option
+
+ip dhcp snooping vlan 6
+no ip dhcp snooping information option
+
+ip dhcp snooping vlan 7
+no ip dhcp snooping information option
+
 crypto key generate rsa general-keys modulus 1024
 ip ssh version 2
 
@@ -73,12 +83,16 @@ interface FastEthernet0/9
  switchport mode trunk
  switchport trunk encapsulation dot1q
  switchport voice vlan 4
+ ip dhcp snooping trust
+ ip dhcp snooping limit rate 100
 
 interface FastEthernet0/10
  description RB12
  switchport trunk allowed vlan 1-2,6
  switchport trunk encapsulation dot1q
  switchport mode trunk
+ ip dhcp snooping trust
+ ip dhcp snooping limit rate 100
 
 interface FastEthernet0/12
  description SWB21

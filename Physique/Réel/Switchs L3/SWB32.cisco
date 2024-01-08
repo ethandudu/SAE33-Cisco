@@ -72,6 +72,8 @@ interface FastEthernet0/9
  switchport trunk allowed vlan 1-2,6
  switchport mode trunk
  switchport trunk encapsulation dot1q
+ ip dhcp snooping trust
+ ip dhcp snooping limit rate 100
 
 interface FastEthernet0/10
  description RB12
@@ -79,6 +81,8 @@ interface FastEthernet0/10
  switchport voice vlan 4
  switchport mode trunk
  switchport trunk encapsulation dot1q
+ ip dhcp snooping trust
+ ip dhcp snooping limit rate 100
 
 interface FastEthernet0/12
  description SWB24
