@@ -10,6 +10,12 @@ ip classless
 ip domain-name neticien.fr
 ip default-gateway 172.16.16.30
 
+ip arp inspection vlan 2
+ip arp inspection vlan 3
+ip arp inspection vlan 4
+ip arp inspection vlan 6
+ip arp inspection vlan 7
+
 crypto key generate rsa general-keys modulus 1024
 ip ssh version 2
 
