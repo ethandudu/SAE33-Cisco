@@ -14,12 +14,15 @@ name 10.200.2.0 outside-lan
 !
 interface Ethernet0/0
  switchport access vlan 10
+ no shutdown
 !
 interface Ethernet0/1
  switchport access vlan 11
+ no shutdown
 !
 interface Ethernet0/2
  switchport access vlan 12
+ no shutdown
 !
 interface Ethernet0/3
  shutdown
@@ -29,6 +32,7 @@ interface Ethernet0/4
 !
 interface Ethernet0/5
  switchport access vlan 13
+ no shutdown
 !
 interface Ethernet0/6
  shutdown
